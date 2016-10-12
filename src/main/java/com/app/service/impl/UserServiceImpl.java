@@ -18,4 +18,8 @@ public class UserServiceImpl implements UserService{
 		return userDao.findAll();
 	}
 
+	public void save(User user) {
+		userDao.insertUser(user);
+	}
+
 }

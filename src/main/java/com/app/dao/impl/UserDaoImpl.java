@@ -2,6 +2,8 @@ package com.app.dao.impl;
 
 import java.util.List;
 
+
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -20,10 +22,17 @@ public class UserDaoImpl implements UserDao {
     public void setSessionFactory(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
-
-	public List<User> findAll() {
-		return sessionFactory.getCurrentSession().createQuery("from User c").getResultList();
+    
+    public List<User> findAll() {
+		Session session = sessionFactory.openSession();
+		List<User> userList = session.createQuery("from User c").getResultList();
+    	session.close();
+    	return userList;
 	}
-
-		
+    
+	public void insertUser(User user){
+		Session session = sessionFactory.openSession();
+		session.save(user);
+		session.close();
+	}
 }

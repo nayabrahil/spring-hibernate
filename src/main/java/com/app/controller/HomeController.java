@@ -18,16 +18,18 @@ public class HomeController {
 
 	@RequestMapping(value="/",method=RequestMethod.GET)
 	public String home(ModelMap model){
-		model.addAttribute("message", "Nayab Rahil");
-		for(User user : userService.findAllUser()){
-			System.out.println(user.getName());
-		}
+		User user = new User();
+		user.setName("Nayab Rahil");
+		user.setEmail("nayabrahil@gmail.com");
+		user.setPassword("NoOneKnows");
+		userService.save(user);
+		model.addAttribute("message", "welcomeMessage");
 		return "showMessage";
 	}
 	
 	@RequestMapping(value = "/helloagain", method = RequestMethod.GET)
     public String sayHelloAgain(ModelMap model) {
-        model.addAttribute("message", "welcomeMessage");
+		model.addAttribute("message", "welcomeMessage");
         return "showMessage";
     }
 }

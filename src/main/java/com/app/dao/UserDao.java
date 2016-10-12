@@ -7,4 +7,6 @@ import com.app.domain.entity.User;
 public interface UserDao {
 	
 	List<User> findAll();
+	
+	void insertUser(User user);
 }

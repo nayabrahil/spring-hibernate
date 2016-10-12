@@ -7,4 +7,5 @@ public interface UserService {
 	
 	List<User> findAllUser();
 
+	void save(User user);
 }
